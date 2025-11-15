@@ -4,13 +4,15 @@ import Header from "@/components/layout/Header";
 import { PostData, PostProps } from "@/interfaces";
 import { useState } from "react";
 
-const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
+const Posts: React.FC<PostProps[]> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [post, setPost] = useState<PostData | null>(null);
+
 
   const handleAddPost = (newPost: PostData) => {
     setPost({ ...newPost, id: posts.length + 1 });
   };
+
 
   return (
     <div className="flex flex-col h-screen">
@@ -36,6 +38,7 @@ const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
     </div>
   )
 }
+
 
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts")
